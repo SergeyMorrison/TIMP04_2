@@ -1,0 +1,25 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone-repo
+      - uses: actions/checkout@v1
+      
+      - name: build solver application
+        run: |
+          cd solver_application
+          mkdir build && cd build
+          cmake ..
+          make          
+      - name: build hello
+        run: |
+          cd hello_world_application
+          mkdir build && cd build
+          cmake ..
+          make
